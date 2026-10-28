@@ -131,7 +131,7 @@ function HeroArtwork({ onMouseMove, onMouseLeave, isVisible, mode, onImageError 
             }}
           />
         </div>
-        <div className="portrait-label">GAME DEVELOPER</div>
+        <div className="portrait-label">{personalInfo.heroLabel}</div>
         <div className="portrait-decoration" aria-hidden="true">GAME / BUILD / REPEAT</div>
       </div>
     );
@@ -191,7 +191,7 @@ function HeroArtwork({ onMouseMove, onMouseLeave, isVisible, mode, onImageError 
           </div>
         );
       })}
-      <div className="portrait-label">GAME DEVELOPER</div>
+      <div className="portrait-label">{personalInfo.heroLabel}</div>
       <div className="portrait-decoration" aria-hidden="true">GAME / BUILD / REPEAT</div>
     </div>
   );
@@ -258,17 +258,6 @@ function Hero() {
     window.cancelAnimationFrame(pointerFrameRef.current);
   }, []);
 
-  const socials = [
-    { label: "GitHub", url: personalInfo.links.github },
-    { label: "LinkedIn", url: personalInfo.links.linkedin },
-    {
-      label: "Email",
-      url: personalInfo.links.email
-        ? `mailto:${personalInfo.links.email}`
-        : "",
-    },
-  ].filter((item) => item.url);
-
   return (
     <section className="reference-hero" id="home">
       <div className="reference-container reference-hero-grid">
@@ -284,7 +273,7 @@ function Hero() {
           </span>
 
           <h1>
-            {personalInfo.headline}.{" "}
+            <span className="hero-name">{personalInfo.headline}</span>
             <span>{personalInfo.headlineHighlight}</span>
           </h1>
 
@@ -292,7 +281,7 @@ function Hero() {
 
           <div className="reference-hero-actions">
             <a href="#projects" className="reference-button">
-              See my projects
+              View projects
               <ArrowUpRight size={17} />
             </a>
 
@@ -305,32 +294,10 @@ function Hero() {
             </a>
 
             <a href="#contact" className="reference-button reference-button-ghost">
-              Get in touch
+              Hire me
             </a>
           </div>
-
-          <div className="reference-socials">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.url}
-                target={social.url.startsWith("mailto:") ? undefined : "_blank"}
-                rel={social.url.startsWith("mailto:") ? undefined : "noreferrer"}
-              >
-                {social.label}
-                <ArrowUpRight size={14} />
-              </a>
-            ))}
-          </div>
-
-          <div className="reference-stats">
-            {personalInfo.heroStats.map((stat) => (
-              <div key={stat.value}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </div>
+          <p className="hero-proof">{personalInfo.heroProof}</p>
         </motion.div>
 
         <motion.div

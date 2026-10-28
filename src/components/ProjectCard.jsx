@@ -266,10 +266,21 @@ function ProjectCard({ project, index, onOpen }) {
         <p>{project.description}</p>
 
         <div className="game-card-tags">
-          {project.genres.slice(0, 2).map((genre) => (
-            <span key={genre}>{genre}</span>
+          {project.technologies.map((technology) => (
+            <span key={technology}>{technology}</span>
           ))}
         </div>
+        <div className="game-card-role">{project.role}</div>
+        {project.links[0] && (
+          <a
+            className="game-card-project-link"
+            href={project.links[0].url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {project.links[0].label} <ArrowUpRight size={14} />
+          </a>
+        )}
       </div>
       </article>
     </motion.div>

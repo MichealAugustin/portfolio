@@ -1,15 +1,29 @@
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "../data/portfolio";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import { Download } from "lucide-react";
+
+const sampleReportUrl = `${import.meta.env.BASE_URL}files/bug-report-sample.pdf`;
 
 const filters = ["All", ...new Set(projects.map((project) => project.category))];
 
 function FeaturedProjects() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [hasSampleReport, setHasSampleReport] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    fetch(sampleReportUrl, { method: "HEAD" })
+      .then((response) => {
+        if (active && response.ok) setHasSampleReport(true);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   const visibleProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
@@ -35,9 +49,16 @@ function FeaturedProjects() {
             </p>
           </div>
 
-          <span className="gallery-total">
-            {String(visibleProjects.length).padStart(2, "0")} PROJECTS
-          </span>
+          <div className="gallery-heading-actions">
+            {hasSampleReport && (
+              <a className="reference-button reference-button-ghost" href={sampleReportUrl} download>
+                <Download size={16} /> Sample bug report / test plan
+              </a>
+            )}
+            <span className="gallery-total">
+              {String(visibleProjects.length).padStart(2, "0")} PROJECTS
+            </span>
+          </div>
         </motion.header>
 
         <div className="gallery-filters" aria-label="Filter projects">

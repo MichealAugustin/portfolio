@@ -29,7 +29,7 @@ function About() {
               aria-label={`${personalInfo.name} profile photo placeholder`}
             >
               <span>{personalInfo.initials}</span>
-              <small>{personalInfo.role}</small>
+              <small>{personalInfo.heroLabel}</small>
             </div>
           )}
         </motion.div>

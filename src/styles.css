@@ -219,10 +219,10 @@ h3 {
 .reference-hero {
   position: relative;
   display: flex;
-  min-height: min(850px, 100svh);
+  min-height: 100svh;
   align-items: center;
   overflow: hidden;
-  padding: 120px 0 96px;
+  padding: 104px 0 56px;
 }
 
 .reference-hero::after {
@@ -273,27 +273,38 @@ h3 {
 
 .reference-hero h1 {
   max-width: 740px;
-  margin: 24px 0 0;
-  font-size: clamp(2.8rem, 5.7vw, 5rem);
+  margin: 18px 0 0;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
   font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.065em;
 }
 
-.reference-hero h1 span {
+.reference-hero h1 > span {
   display: block;
-  margin-top: 9px;
+  margin-top: 5px;
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  line-height: 1.1;
   background: linear-gradient(100deg, var(--accent), var(--accent-bright));
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
 }
 
+.reference-hero h1 > .hero-name {
+  margin-top: 0;
+  font-size: inherit;
+  background: none;
+  color: #f5f6fb;
+  -webkit-text-fill-color: currentColor;
+}
+
 .reference-hero-intro {
-  max-width: 590px;
-  margin: 22px 0 0;
+  max-width: 640px;
+  margin: 14px 0 0;
   color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.85;
+  font-size: 0.9rem;
+  line-height: 1.65;
 }
 
 .reference-hero-actions,
@@ -306,7 +317,14 @@ h3 {
 
 .reference-hero-actions {
   gap: 11px;
-  margin-top: 25px;
+  margin-top: 17px;
+}
+
+.hero-proof {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
 }
 
 .reference-button {
@@ -2138,12 +2156,12 @@ section[id] {
 @media (max-width: 800px) {
   .reference-hero {
     min-height: auto;
-    padding: 112px 0 86px;
+    padding: 94px 0 48px;
   }
 
   .reference-hero-grid {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 22px;
   }
 
   .reference-hero-copy {
@@ -2156,7 +2174,7 @@ section[id] {
   }
 
   .reference-hero h1 {
-    font-size: clamp(2.55rem, 9vw, 4rem);
+    font-size: clamp(2rem, 3.6vw, 3.25rem);
   }
 
   .portrait-decoration {
@@ -2267,9 +2285,9 @@ section[id] {
   }
 
   .reference-hero-actions .reference-button {
-    flex: 1;
-    padding-inline: 10px;
-    font-size: 0.75rem;
+    flex: 0 1 auto;
+    padding-inline: 12px;
+    font-size: 0.78rem;
   }
 
   .game-icon-parallax[data-size="34"],
@@ -2375,6 +2393,40 @@ section[id] {
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+.gallery-heading-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.game-card-role {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.game-card-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  color: #c7bcff;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.game-card-project-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .gallery-heading-actions {
+    justify-content: flex-start;
   }
 }
 

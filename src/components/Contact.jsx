@@ -2,6 +2,15 @@ import { motion } from "framer-motion";
 import { contact } from "../data/portfolio";
 
 function BrandIcon({ name }) {
+  if (name === "email") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" focusable="false">
+        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+        <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
   if (name === "linkedin") {
     return (
       <svg viewBox="0 0 24 24" focusable="false">
@@ -115,8 +124,8 @@ function Contact() {
                 data-scroll-reveal="from-right"
                 data-reveal-delay={index * 50}
                 href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                 aria-label={`${link.label}: ${link.subtitle}`}
               >
                 <span className="contact-link-icon" aria-hidden="true">
