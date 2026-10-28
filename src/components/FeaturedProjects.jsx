@@ -23,10 +23,8 @@ function FeaturedProjects() {
     <section id="projects" className="game-gallery">
       <div className="reference-container">
         <motion.header
+          data-scroll-reveal="gallery-heading"
           className="gallery-heading"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <div>
             <span className="eyebrow">MY PROJECTS</span>

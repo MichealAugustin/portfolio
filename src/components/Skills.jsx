@@ -6,10 +6,8 @@ function Skills() {
     <section id="skills" className="section section-alt">
       <div className="section-container">
         <motion.div
+          data-scroll-reveal
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <span>02 / SKILLS</span>
           <h2>Tools I use to build interactive experiences.</h2>
@@ -20,14 +18,16 @@ function Skills() {
             <motion.div
               className="skill-group"
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
+              data-scroll-reveal
+              data-reveal-delay={index * 50}
             >
               <h3>{category.title}</h3>
 
-              <div className="skill-list">
+              <div
+                className="skill-list"
+                data-scroll-reveal="skill-tag"
+                data-reveal-delay={index * 50}
+              >
                 {category.items.map((skill) => (
                   <span key={skill}>{skill}</span>
                 ))}

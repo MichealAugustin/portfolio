@@ -1,5 +1,18 @@
 import { Apple, Smartphone } from "lucide-react";
 
+export const heroConfig = {
+  artwork: "icons",
+};
+
+export const cursorRippleConfig = {
+  enabled: true,
+  useWebGL: false,
+  intensity: 1,
+  color1: "#8b5cf6",
+  color2: "#38bdf8",
+  maxRadius: 100,
+};
+
 const personalInfo = {
   name: "Micheal Augustin J",
   initials: "RegiMc21",

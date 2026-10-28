@@ -12,27 +12,33 @@ import QASection from "./components/QASection";
 import GithubSection from "./components/GithubSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ScrollReveal from "./components/ScrollReveal";
+import CursorRipple from "./components/CursorRipple";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <div className="site-content">
+        <CursorRipple />
+        <ScrollReveal />
+        <Navbar />
 
-      <main>
-        <Hero />
-        <FeaturedGame />
-        <FeaturedProjects />
-        <About />
-        <Skills />
-        <Experience />
-        <Education />
-        <Journey />
-        <QASection />
-        <GithubSection />
-        <Contact />
-      </main>
+        <main>
+          <Hero />
+          <FeaturedGame />
+          <FeaturedProjects />
+          <About />
+          <Skills />
+          <Experience />
+          <Education />
+          <Journey />
+          <QASection />
+          <GithubSection />
+          <Contact />
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </>
   );
 }

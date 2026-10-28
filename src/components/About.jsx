@@ -10,10 +10,8 @@ function About() {
     <section id="about" className="section about-section">
       <div className="about-layout">
         <motion.div
+          data-scroll-reveal="from-left"
           className="about-photo-frame"
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
         >
           {aboutMe.photo && !photoFailed ? (
             <img
@@ -37,10 +35,8 @@ function About() {
         </motion.div>
 
         <motion.div
+          data-scroll-reveal="from-right"
           className="about-content"
-          initial={{ opacity: 0, x: 24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
         >
           <div className="about-eyebrow">
             <span aria-hidden="true" />
@@ -56,10 +52,14 @@ function About() {
           </div>
 
           <div className="about-skill-groups">
-            {aboutMe.skillGroups.map((group) => (
+            {aboutMe.skillGroups.map((group, index) => (
               <div className="about-skill-group" key={group.label}>
                 <h3>{group.label}</h3>
-                <div className="about-tags">
+                <div
+                  className="about-tags"
+                  data-scroll-reveal="skill-tag"
+                  data-reveal-delay={index * 50}
+                >
                   {group.tags.map((tag) => (
                     <span key={tag}>{tag}</span>
                   ))}
@@ -71,13 +71,20 @@ function About() {
           <div className="about-actions">
             <a
               className="about-button about-button-primary"
+              data-scroll-reveal="button"
+              data-reveal-delay="0"
               href={aboutMe.cvUri}
               download
             >
               <ArrowDownToLine size={18} aria-hidden="true" />
               Download CV
             </a>
-            <a className="about-button about-button-secondary" href="#contact">
+            <a
+              className="about-button about-button-secondary"
+              data-scroll-reveal="button"
+              data-reveal-delay="50"
+              href="#contact"
+            >
               Contact me
               <ArrowUpRight size={17} aria-hidden="true" />
             </a>

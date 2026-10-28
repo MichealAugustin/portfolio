@@ -1,11 +1,12 @@
 import { personalInfo } from "../data/portfolio";
+import BrandMark from "./BrandMark";
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer-inner">
         <div>
-          <strong>{personalInfo.initials}<span>.</span></strong>
+          <strong className="footer-brand"><BrandMark /></strong>
           <p>{personalInfo.role} • Unity • AR/VR</p>
         </div>
 

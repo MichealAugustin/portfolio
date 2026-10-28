@@ -1,6 +1,11 @@
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import {
+  createScrollReveal,
+  refreshScrollTriggers,
+} from "./scrollRevealAnimation";
 import { ArrowUpRight, Gamepad2 } from "lucide-react";
 import EngineBadge from "./EngineBadge";
 import PlatformTags from "./PlatformTags";
@@ -27,6 +32,7 @@ function getCoverImages(project) {
 }
 
 function ProjectCard({ project, index, onOpen }) {
+  const cardRef = useRef(null);
   const coverRef = useRef(null);
   const coverImages = useMemo(() => getCoverImages(project), [project]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,6 +56,34 @@ function ProjectCard({ project, index, onOpen }) {
   const hasAvailableImage = coverImages.some(
     (image) => !failedImages.has(image.src),
   );
+
+  useLayoutEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let context;
+
+    const initialize = () => {
+      if (reducedMotion.matches || !cardRef.current) return;
+
+      context = gsap.context(() => {
+        createScrollReveal(cardRef.current);
+      }, cardRef);
+      refreshScrollTriggers();
+    };
+    const handleMotionPreferenceChange = () => {
+      context?.revert();
+      context = undefined;
+      initialize();
+    };
+
+    initialize();
+    reducedMotion.addEventListener("change", handleMotionPreferenceChange);
+
+    return () => {
+      reducedMotion.removeEventListener("change", handleMotionPreferenceChange);
+      context?.revert();
+      refreshScrollTriggers();
+    };
+  }, [index]);
 
   useEffect(() => {
     if (!coverRef.current) return undefined;
@@ -138,14 +172,12 @@ function ProjectCard({ project, index, onOpen }) {
   };
 
   return (
-    <motion.article
-      layout
+    <motion.div layout className="game-card-layout">
+      <article
+      ref={cardRef}
       className="game-card"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.2) }}
-      whileHover={{ y: -5 }}
+      data-scroll-reveal="project-card"
+      data-reveal-delay={Math.min(index * 50, 200)}
     >
       <div
         className="game-card-cover"
@@ -239,7 +271,8 @@ function ProjectCard({ project, index, onOpen }) {
           ))}
         </div>
       </div>
-    </motion.article>
+      </article>
+    </motion.div>
   );
 }
 

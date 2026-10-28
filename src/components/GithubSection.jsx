@@ -7,10 +7,8 @@ function GithubSection() {
     <section id="github" className="section">
       <div className="section-container">
         <motion.div
+          data-scroll-reveal
           className="github-panel"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <div className="github-icon">
             <GitBranch size={30} />
@@ -28,6 +26,7 @@ function GithubSection() {
               target="_blank"
               rel="noreferrer"
               className="btn btn-primary"
+              data-scroll-reveal="button"
             >
               Visit GitHub
               <ExternalLink size={17} />

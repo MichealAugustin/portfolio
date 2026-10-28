@@ -6,10 +6,8 @@ function Journey() {
     <section id="journey" className="section section-alt">
       <div className="section-container">
         <motion.div
+          data-scroll-reveal
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <span>06 / JOURNEY</span>
           <h2>From code to interactive experiences.</h2>
@@ -18,12 +16,9 @@ function Journey() {
         <div className="journey">
           {personalInfo.journey.map((item, index) => (
             <motion.div
+              data-scroll-reveal={index % 2 === 0 ? "from-left" : "from-right"}
               className="journey-item"
               key={item.number}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
             >
               <div className="journey-number">
                 {item.number}

@@ -13,17 +13,14 @@ function FeaturedGame() {
   return (
     <section className="reference-section featured-game" id="featured">
       <div className="reference-container">
-        <div className="reference-section-heading">
+        <div className="reference-section-heading" data-scroll-reveal>
           <span className="eyebrow">FEATURED PROJECT</span>
           <h2>A closer look at my work.</h2>
         </div>
 
         <motion.article
+          data-scroll-reveal="featured-game-panel"
           className="featured-game-panel"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55 }}
         >
           <div className="featured-game-media">
             {project.image ? (
@@ -47,14 +44,18 @@ function FeaturedGame() {
             <h3>{project.name}</h3>
             <p>{project.description}</p>
 
-            <div className="featured-game-tags">
+            <div className="featured-game-tags" data-scroll-reveal="skill-tag">
               {project.technologies.map((technology) => (
                 <span key={technology}>{technology}</span>
               ))}
               <PlatformTags platforms={project.platforms} />
             </div>
 
-            <a href="#projects" className="reference-button">
+            <a
+              href="#projects"
+              className="reference-button"
+              data-scroll-reveal="button"
+            >
               Explore all projects
               <ArrowUpRight size={17} />
             </a>

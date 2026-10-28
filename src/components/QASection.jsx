@@ -16,10 +16,8 @@ function QASection() {
     <section id="qa" className="section section-alt">
       <div className="section-container">
         <motion.div
+          data-scroll-reveal
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <span>07 / QA & TESTING</span>
           <h2>Making games work as well as they play.</h2>
@@ -27,18 +25,14 @@ function QASection() {
 
         <div className="qa-intro">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            data-scroll-reveal="from-left"
           >
             <p>{personalInfo.qaIntro}</p>
           </motion.div>
 
           <motion.div
             className="qa-label"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            data-scroll-reveal="from-right"
           >
             <span>ADDITIONAL STRENGTH</span>
             <strong>DEVELOPMENT + QUALITY</strong>
@@ -53,10 +47,8 @@ function QASection() {
               <motion.div
                 className="qa-card"
                 key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
+                data-scroll-reveal
+                data-reveal-delay={index * 60}
               >
                 <div className="qa-icon">
                   <Icon size={20} />

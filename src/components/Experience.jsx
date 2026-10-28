@@ -7,20 +7,16 @@ function Experience() {
     <section id="experience" className="section section-alt">
       <div className="section-container">
         <motion.div
+          data-scroll-reveal
           className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <span>04 / EXPERIENCE</span>
           <h2>Where I've worked.</h2>
         </motion.div>
 
         <motion.div
+          data-scroll-reveal
           className="experience-item"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <div className="experience-icon">
             <Briefcase size={22} />

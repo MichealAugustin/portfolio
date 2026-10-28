@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Damion&family=Inter:wght@400;500;600;700;800&family=Kaushan+Script&family=Space+Grotesk:wght@400;500;600;700&family=Yellowtail&display=swap");
 
 :root {
   font-family: "Inter", sans-serif;
@@ -22,6 +22,8 @@
   --about-orange: #f97316;
   --about-navy: #121829;
   --about-muted: #9aa3b8;
+  --brand-purple: #6d3fc0;
+  --nav-h: 73px;
 }
 
 * {
@@ -31,7 +33,7 @@
 html {
   min-width: 320px;
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: var(--nav-h);
 }
 
 body {
@@ -118,26 +120,58 @@ h3 {
   margin: 0 auto;
 }
 
-.logo,
-.footer-inner strong {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.07em;
-}
-
 .logo {
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
   white-space: nowrap;
+  padding-bottom: 4px;
 }
 
-.footer-inner strong {
-  font-size: 1.4rem;
+.brand-mark {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--brand-purple);
+  font-family: "Kaushan Script", "Yellowtail", "Damion", cursive;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 0 12px rgba(139, 92, 246, 0.45);
+  transition: color 180ms ease;
 }
 
-.logo span,
-.footer-inner strong span {
-  color: var(--accent);
+.brand-mark svg {
+  width: calc(100% + 14px);
+  height: 9px;
+  margin-top: 1px;
+  overflow: visible;
+  transform: rotate(-2.5deg);
+}
+
+.brand-mark path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: brand-swoosh-draw 800ms ease-out 150ms forwards;
+}
+
+.logo:hover .brand-mark {
+  color: #8b5cf6;
+}
+
+.footer-brand .brand-mark {
+  align-items: flex-start;
+  font-size: 24px;
+}
+
+@keyframes brand-swoosh-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .nav-links {
@@ -155,8 +189,13 @@ h3 {
 }
 
 .nav-links a:hover,
+.nav-links a[aria-current="location"],
 .footer-inner > div:last-child a:hover {
   color: #fff;
+}
+
+.nav-links a[aria-current="location"] {
+  color: var(--accent-bright);
 }
 
 .mobile-menu-button {
@@ -341,10 +380,15 @@ h3 {
   width: 100%;
   max-width: 380px;
   justify-self: center;
-  animation: float 7s ease-in-out infinite;
+}
+
+.hero-artwork {
+  position: relative;
+  isolation: isolate;
 }
 
 .portrait-frame {
+  position: relative;
   display: grid;
   aspect-ratio: 1;
   place-items: center;
@@ -355,6 +399,151 @@ h3 {
     radial-gradient(circle at 50% 35%, rgba(124, 92, 255, 0.23), transparent 55%),
     linear-gradient(145deg, #141b2a, #080c16);
   box-shadow: 0 30px 100px rgba(0, 0, 0, 0.36);
+}
+
+.portrait-frame-artwork {
+  --pointer-x: 0;
+  --pointer-y: 0;
+  overflow: hidden;
+  border-color: rgba(139, 92, 246, 0.45);
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(84, 76, 182, 0.16), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.045), transparent 72%),
+    linear-gradient(145deg, #141b2a, #080c16);
+}
+
+.artwork-definitions,
+.artwork-filter-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.gamepad-parallax {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 68%;
+  transform:
+    translate(-50%, -50%)
+    rotateX(calc(var(--pointer-y, 0) * -16deg))
+    rotateY(calc(var(--pointer-x, 0) * 16deg));
+  transform-style: preserve-3d;
+}
+
+.gamepad-float {
+  animation: hero-gamepad-float 4s ease-in-out infinite;
+}
+
+.gamepad-art {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.2));
+}
+
+.game-icon-parallax {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  place-items: center;
+  transform: translate(
+    calc(var(--pointer-x, 0) * var(--icon-depth) * 14px),
+    calc(var(--pointer-y, 0) * var(--icon-depth) * 14px)
+  );
+  will-change: transform;
+}
+
+.game-icon-float {
+  display: grid;
+  place-items: center;
+  color: #a78bfa;
+  animation: hero-icon-float var(--float-duration) ease-in-out var(--float-delay) infinite;
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.25));
+}
+
+.game-icon-float svg {
+  overflow: visible;
+  stroke: url("#orbit-gradient");
+}
+
+.game-icon-rotating {
+  animation: hero-icon-spin 12s linear infinite;
+}
+
+.artwork-sparkle {
+  position: absolute;
+  z-index: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 1px;
+  background: #b7a8ff;
+  box-shadow: 0 0 9px rgba(56, 189, 248, 0.7);
+  animation: hero-sparkle 2.8s ease-in-out infinite;
+}
+
+.portrait-label {
+  position: absolute;
+  z-index: 3;
+  bottom: 17px;
+  left: 17px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: rgba(8, 12, 22, 0.78);
+  color: #d7d0ff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  backdrop-filter: blur(8px);
+}
+
+.portrait-frame-profile {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.profile-art-parallax {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-radius: 27px;
+  background:
+    linear-gradient(#101522, #101522) padding-box,
+    linear-gradient(135deg, #8b5cf6, #38bdf8) border-box;
+  box-shadow: 0 24px 72px rgba(88, 76, 220, 0.22);
+  transform:
+    rotateX(calc(var(--pointer-y, 0) * -16deg))
+    rotateY(calc(var(--pointer-x, 0) * 16deg));
+}
+
+.profile-art-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: hero-gamepad-float 4s ease-in-out infinite;
+}
+
+.profile-art-filtered {
+  filter: url("#subtle-cartoon");
+}
+
+.portrait-frame-profile .portrait-label {
+  bottom: 16px;
+  left: 16px;
+}
+
+.portrait-frame-profile .portrait-decoration {
+  top: 20px;
+  right: -24px;
 }
 
 .portrait-frame img {
@@ -418,6 +607,65 @@ h3 {
   font-size: 0.62rem;
   letter-spacing: 0.13em;
   transform: rotate(4deg);
+}
+
+.portrait-frame .portrait-decoration {
+  z-index: 4;
+}
+
+.portrait-frame-artwork .portrait-decoration {
+  top: 12px;
+  right: 10px;
+}
+
+.portrait-frame-artwork[data-visible="false"] .gamepad-float,
+.portrait-frame-artwork[data-visible="false"] .game-icon-float,
+.portrait-frame-artwork[data-visible="false"] .game-icon-rotating,
+.portrait-frame-artwork[data-visible="false"] .artwork-sparkle,
+.portrait-frame-profile[data-visible="false"] .profile-art-image {
+  animation-play-state: paused;
+}
+
+@keyframes hero-gamepad-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes hero-icon-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes hero-icon-spin {
+  to { rotate: 360deg; }
+}
+
+@keyframes hero-sparkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.65); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+.site-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cursor-ripple-canvas {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+  opacity: 0.92;
+  mix-blend-mode: screen;
+}
+
+.cursor-ripple-webgl {
+  display: none;
+}
+
+.cursor-ripple-webgl[data-renderer="webgl"] {
+  display: block;
 }
 
 .reference-scroll {
@@ -666,15 +914,22 @@ h3 {
   gap: 18px;
 }
 
+.game-card-layout {
+  min-width: 0;
+  height: 100%;
+}
+
 .game-card {
+  height: 100%;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 13px;
   background: rgba(12, 17, 29, 0.93);
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition: border-color 180ms ease, box-shadow 180ms ease, translate 180ms ease;
 }
 
 .game-card:hover {
+  translate: 0 -5px;
   border-color: rgba(155, 135, 255, 0.52);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
 }
@@ -1134,8 +1389,38 @@ h3 {
   margin-top: 23px;
 }
 
-.section {
-  scroll-margin-top: 86px;
+section[id] {
+  scroll-margin-top: var(--nav-h);
+}
+
+[data-anchor-revealed] [data-scroll-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  translate: none !important;
+}
+
+#about,
+#skills,
+#projects,
+#experience,
+#contact {
+  padding-top: 24px;
+}
+
+#contact {
+  padding-top: 0;
+  padding-bottom: 274px;
+}
+
+#contact .contact-content {
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+@media (max-width: 950px) {
+  #contact {
+    padding-bottom: 76px;
+  }
 }
 
 .section-alt {
@@ -1608,7 +1893,6 @@ h3 {
 
 .contact-section {
   position: relative;
-  overflow: hidden;
   padding: 82px 0 92px;
 }
 
@@ -1714,11 +1998,11 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   background: rgba(4, 7, 15, 0.38);
-  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  transition: translate 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
 }
 
 .contact-link-card:hover {
-  transform: translateY(-3px);
+  translate: 0 -3px;
   border-color: rgba(251, 191, 36, 0.48);
   background: rgba(18, 24, 41, 0.72);
   box-shadow: 0 9px 25px rgba(96, 165, 250, 0.08), 0 7px 22px rgba(251, 191, 36, 0.07);
@@ -1903,11 +2187,13 @@ h3 {
   .about-photo-frame {
     width: min(280px, 100%);
     justify-self: center;
+    order: 2;
   }
 
   .about-content {
     width: min(100%, 680px);
     justify-self: center;
+    order: 1;
   }
 
   .about-title {
@@ -1931,6 +2217,10 @@ h3 {
 @media (max-width: 650px) {
   .navbar-inner {
     width: calc(100% - 32px);
+  }
+
+  .brand-mark {
+    font-size: 24px;
   }
 
   .mobile-menu-button {
@@ -1980,6 +2270,16 @@ h3 {
     flex: 1;
     padding-inline: 10px;
     font-size: 0.75rem;
+  }
+
+  .game-icon-parallax[data-size="34"],
+  .game-icon-parallax[data-size="28"],
+  .game-icon-parallax[data-size="25"] {
+    display: none;
+  }
+
+  .portrait-frame-artwork .portrait-decoration {
+    right: 8px;
   }
 
   .reference-scroll {
@@ -2122,7 +2422,7 @@ h3 {
   }
 
   .contact-section {
-    padding: 58px 0 66px;
+    padding-bottom: 66px;
   }
 
   .contact-content {
@@ -2161,5 +2461,19 @@ h3 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .gamepad-float,
+  .game-icon-float,
+  .game-icon-rotating,
+  .artwork-sparkle,
+  .profile-art-image {
+    animation: none !important;
+  }
+
+  .gamepad-parallax,
+  .game-icon-parallax,
+  .profile-art-parallax {
+    transform: none !important;
   }
 }

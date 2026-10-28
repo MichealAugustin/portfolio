@@ -85,10 +85,8 @@ function Contact() {
     <section id="contact" className="contact-section">
       <div className="section-container contact-container">
         <motion.div
+          data-scroll-reveal="contact-content"
           className="contact-content"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           <div className="contact-copy">
             <div className="contact-eyebrow">
@@ -98,7 +96,11 @@ function Contact() {
             <h2>{contact.heading}</h2>
             <p>{contact.text}</p>
             {contact.phone?.url && (
-              <a className="contact-phone" href={contact.phone.url}>
+              <a
+                className="contact-phone"
+                data-scroll-reveal="button"
+                href={contact.phone.url}
+              >
                 <span>{contact.phone.label}</span>
                 <strong>{contact.phone.number}</strong>
               </a>
@@ -106,10 +108,12 @@ function Contact() {
           </div>
 
           <div className="contact-links" aria-label="Contact links">
-            {visibleLinks.map((link) => (
+            {visibleLinks.map((link, index) => (
               <a
                 className="contact-link-card"
                 key={link.label}
+                data-scroll-reveal="from-right"
+                data-reveal-delay={index * 50}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
