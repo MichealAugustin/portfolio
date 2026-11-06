@@ -15,7 +15,7 @@ Vite prints the local development URL after startup. Create a production build w
 
 Update [src/data/portfolio.js](./src/data/portfolio.js) to edit the personal profile, links, bio, skills, experience, education, journey, QA information, and projects.
 
-Project screenshots and videos can be added to `public/images/projects/` and registered in each project's `media` array. Leave the array empty to show the accessible preview placeholder. The CV is served from `public/resume/Resume.pdf`.
+Project screenshots and videos can be added to `public/images/projects/` and registered in each project's `media` array. Leave the array empty to show the accessible preview placeholder. The CV is served from `public/resume/Micheal Augustin.pdf`.
 
 To show a WhatsApp contact button, set `VITE_WHATSAPP_NUMBER` in a local `.env` file (international number with country code; digits and formatting are accepted).
 

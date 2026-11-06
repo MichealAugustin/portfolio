@@ -74,7 +74,7 @@ function About() {
               data-scroll-reveal="button"
               data-reveal-delay="0"
               href={aboutMe.cvUri}
-              download
+              download="Micheal Augustin.pdf"
             >
               <ArrowDownToLine size={18} aria-hidden="true" />
               Download CV

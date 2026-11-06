@@ -288,7 +288,7 @@ function Hero() {
             <a
               href={personalInfo.cvUrl}
               className="reference-button reference-button-ghost"
-              download
+              download="Micheal Augustin.pdf"
             >
               Download CV
             </a>

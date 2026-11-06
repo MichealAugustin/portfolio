@@ -24,7 +24,7 @@ const personalInfo = {
     "I build playable Unity (C#) games and AR/VR apps, then test and debug every build. 4-month AR/VR internship in Unity and Unreal Engine. Open to Junior Game Developer, Unity Developer and Game QA roles.",
   heroProof: "3 projects · AR app tested on iPad · Udemy Game Tester · Google IT Support",
   image: "",
-  cvUrl: `${import.meta.env.BASE_URL}files/Micheal_Augustin_J_Resume.pdf`,
+  cvUrl: `${import.meta.env.BASE_URL}resume/Micheal%20Augustin.pdf`,
   tagline:
     "Building interactive experiences through gameplay programming, Unity, and AR/VR development.",
   heroStats: [
@@ -216,7 +216,7 @@ const aboutMe = {
       tags: ["Unreal Engine", "Git", "GitHub", "Visual Studio", "Blender (Basics)"],
     },
   ],
-  cvUri: `${import.meta.env.BASE_URL}files/Micheal_Augustin_J_Resume.pdf`,
+  cvUri: `${import.meta.env.BASE_URL}resume/Micheal%20Augustin.pdf`,
   photo: `${import.meta.env.BASE_URL}images/profile/Profile.jpg`,
   photoAlt: "Portrait of Micheal Augustin J",
 };
